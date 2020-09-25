@@ -2,15 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Globalization;
 
 namespace Labb2
 {
     class Program
     {
         static float totalTriangleCircumference = 0f;
+        static float sumOfAllAreas = 0f;
+        static Shape3D biggestVolume;
         static List<Shape> shapes = new List<Shape>();
+        
         static void Main(string[] args)
         {
+            CultureInfo ci = new CultureInfo("us");
+            CultureInfo.DefaultThreadCurrentCulture = ci;
+
             Add20RandomShapesToList();
             //Add20RandomShapesWithGivenCenterToList();
             //ForeachTriangle();
@@ -41,12 +48,24 @@ namespace Labb2
             {
                 if (item is Triangle)
                 {
-                    var triangel = item as Triangle;
-                    totalTriangleCircumference += triangel.Circumference;
+                    totalTriangleCircumference += (item as Triangle).Circumference;
+                }
+                if (item is Shape3D)
+                {
+                    biggestVolume = (item as Shape3D);
+
+                    if ((item as Shape3D).Volume > biggestVolume.Volume)
+                    {
+                        biggestVolume = (item as Shape3D);
+                    }
                 }
                 Console.WriteLine(item);
+                sumOfAllAreas += item.Area;
             }
-            Console.WriteLine("Totala triangelomkretsen: " + totalTriangleCircumference);
+            var averageArea = sumOfAllAreas / shapes.Count;
+            Console.WriteLine($"\n3DFormen med störst volym: {biggestVolume}" );
+            Console.WriteLine($"Den genomsnittliga arean för alla former: {MathF.Round(averageArea)}");
+            Console.WriteLine($"Totala triangelomkretsen: {MathF.Round(totalTriangleCircumference)}");
         }
 
         static void ForeachTriangle()
@@ -58,5 +77,6 @@ namespace Labb2
                 Console.WriteLine(v);
             }
         }
+
     }
 }

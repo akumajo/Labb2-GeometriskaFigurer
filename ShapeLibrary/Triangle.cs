@@ -32,7 +32,7 @@ namespace ShapeLibrary
         }
         public override string ToString()
         {
-            return ($"Triangle @ <{Center.X}  {Center.Y}> P1: {vertexArray[0]}, P2: {vertexArray[1]}, P3: {vertexArray[1]}");
+            return ($"Triangle @ <{MathF.Round(Center.X,1)}  {MathF.Round(Center.Y,1)}> P1: {vertexArray[0]}, P2: {vertexArray[1]}, P3: {vertexArray[1]}");
         }
         public IEnumerator GetEnumerator()
         {
