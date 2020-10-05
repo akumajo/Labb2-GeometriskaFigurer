@@ -25,7 +25,7 @@ namespace ShapeLibrary
                 case 4:
                     return new Rectangle(new Vector2(RndFloat(), RndFloat()), new Vector2(RndFloat(), RndFloat()));
                 case 5:
-                    return new Cuboid(new Vector3(RndFloat(), RndFloat(), RndFloat()), RndFloat()); //Cube
+                    return new Rectangle(new Vector2RndFloat(), RndFloat()), RndFloat()); // Square
                 case 6:
                     return new Cuboid(new Vector3(RndFloat(), RndFloat(), RndFloat()), RndFloat()); //Cube
                 default:
